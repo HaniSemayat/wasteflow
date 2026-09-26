@@ -1,12 +1,23 @@
+import Navbar from "../components/layout/Navbar";
+import Footer from "../components/layout/Footer";
+
+import Hero from "../features/home/Hero";
+import HowItWorks from "../features/home/HowItWorks";
+import Stats from "../features/home/Stats";
+
 function HomePage() {
   return (
-    <main>
-      <h1>WasteFlow</h1>
-      <p>
-        A community-driven platform for reporting and monitoring waste
-        collection problems.
-      </p>
-    </main>
+    <>
+      <Navbar />
+
+      <main>
+        <Hero />
+        <HowItWorks />
+        <Stats />
+      </main>
+
+      <Footer />
+    </>
   );
 }
 
