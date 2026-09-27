@@ -1,3 +1,17 @@
+#root {
+  min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app > main {
+  flex: 1;
+}
+
 :root {
   font-family:
     Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -284,6 +298,243 @@ select {
   color: #c5cec4;
 }
 
+/* Reports */
+
+.reports-page {
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 90px 0 110px;
+}
+
+.reports-header {
+  max-width: 760px;
+}
+
+.reports-header h1 {
+  margin: 0;
+
+  font-size: clamp(2.7rem, 6vw, 5rem);
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+
+.reports-header > p:last-child {
+  max-width: 650px;
+  margin-top: 24px;
+
+  color: #667067;
+  font-size: 1.05rem;
+}
+
+.reports-explorer {
+  margin-top: 64px;
+}
+
+.report-filters {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 16px;
+
+  padding: 20px;
+
+  border: 1px solid #dfe5dc;
+  border-radius: 20px;
+
+  background: #ffffff;
+}
+
+.search-field,
+.filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.search-field label,
+.filter-field label {
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.search-field input,
+.filter-field select {
+  width: 100%;
+  min-height: 46px;
+
+  padding: 0 14px;
+
+  border: 1px solid #cfd7cc;
+  border-radius: 10px;
+
+  background: #f8faf7;
+  color: #17211b;
+  outline: none;
+}
+
+.search-field input:focus,
+.filter-field select:focus {
+  border-color: #17211b;
+}
+
+.reports-summary {
+  margin: 24px 0 16px;
+
+  color: #667067;
+  font-size: 0.9rem;
+}
+
+.report-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.report-card {
+  padding: 26px;
+
+  border: 1px solid #dfe5dc;
+  border-radius: 20px;
+
+  background: #ffffff;
+}
+
+.report-card-top,
+.report-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.status,
+.severity {
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.status {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #eef2ec;
+}
+
+.report-card h2 {
+  margin: 28px 0 6px;
+
+  font-size: 1.5rem;
+  letter-spacing: -0.03em;
+}
+
+.report-category {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.report-description {
+  color: #667067;
+}
+
+.report-meta {
+  display: flex;
+  gap: 16px;
+
+  margin: 24px 0;
+
+  color: #667067;
+  font-size: 0.85rem;
+}
+
+.report-card-bottom {
+  padding-top: 18px;
+  border-top: 1px solid #e5e9e2;
+
+  font-size: 0.8rem;
+}
+
+.report-card-bottom a,
+.back-link,
+.report-details a {
+  font-weight: 800;
+}
+
+.empty-state {
+  padding: 60px 20px;
+
+  border: 1px dashed #cfd7cc;
+  border-radius: 20px;
+
+  text-align: center;
+}
+
+.empty-state p {
+  color: #667067;
+}
+
+/* Report details */
+
+.report-details {
+  width: min(900px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 50px 0 110px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 28px;
+}
+
+.report-detail-card {
+  padding: clamp(28px, 5vw, 60px);
+
+  border: 1px solid #dfe5dc;
+  border-radius: 24px;
+
+  background: #ffffff;
+}
+
+.report-detail-card h1 {
+  margin: 12px 0 0;
+
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+
+  margin-top: 48px;
+
+  border: 1px solid #dfe5dc;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.detail-grid div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  padding: 20px;
+
+  background: #f8faf7;
+}
+
+.detail-grid span {
+  font-size: 0.75rem;
+  color: #667067;
+}
+
+.detail-grid strong {
+  font-size: 0.95rem;
+}
+
+/* Mobile reports */
+
+
 /* Responsive */
 
 @media (max-width: 760px) {
@@ -328,5 +579,23 @@ select {
 
   .footer-content {
     flex-direction: column;
+  }
+
+  .report-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .report-list {
+    grid-template-columns: 1fr;
+  }
+
+  .report-card-top,
+  .report-card-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
   }
 }
