@@ -1,14 +1,17 @@
 import { Outlet } from "react-router-dom";
 
 import ScrollToTop from "./hooks/ScrollToTop";
+import ReportsProvider from "./features/reports/ReportsProvider";
 
 function App() {
   return (
-    <div className="app">
-      <ScrollToTop />
+    <ReportsProvider>
+      <div className="app">
+        <ScrollToTop />
 
-      <Outlet />
-    </div>
+        <Outlet />
+      </div>
+    </ReportsProvider>
   );
 }
 

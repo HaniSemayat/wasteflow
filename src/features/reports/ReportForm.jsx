@@ -1,6 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import useReports from "./useReports";
 
 function ReportForm() {
+  const navigate = useNavigate();
+  const { addReport } = useReports();
+
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [area, setArea] = useState("");
@@ -9,7 +15,6 @@ function ReportForm() {
 
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   function validateForm() {
     const newErrors = {};
@@ -54,24 +59,25 @@ function ReportForm() {
     setIsSubmitting(true);
 
     setTimeout(() => {
+      const newReport = {
+        id: String(Date.now()),
+        title: title.trim(),
+        category,
+        description: description.trim(),
+        area,
+        city: "Addis Ababa",
+        status: "Open",
+        severity,
+        reportedAt: "Just now",
+        verifications: 0,
+      };
+
+      addReport(newReport);
+
       setIsSubmitting(false);
-      setIsSubmitted(true);
+
+      navigate(`/reports/${newReport.id}`);
     }, 1000);
-  }
-
-  if (isSubmitted) {
-    return (
-      <section className="form-success">
-        <p className="eyebrow">Report submitted</p>
-
-        <h2>Thank you for reporting this problem.</h2>
-
-        <p>
-          Your report has been recorded and will be available for tracking
-          once the reporting system is connected to the backend.
-        </p>
-      </section>
-    );
   }
 
   return (

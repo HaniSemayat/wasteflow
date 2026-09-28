@@ -3,9 +3,10 @@ import { Link, useParams } from "react-router-dom";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 
-import reports from "../features/reports/reportData";
+import useReports from "../features/reports/useReports";
 
 function ReportDetailsPage() {
+  const { reports } = useReports();
   const { id } = useParams();
 
   const report = reports.find((item) => item.id === id);

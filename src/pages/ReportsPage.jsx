@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useReports from "../features/reports/useReports";
 
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
@@ -6,9 +7,10 @@ import Footer from "../components/layout/Footer";
 import ReportFilters from "../features/reports/ReportFilters";
 import ReportList from "../features/reports/ReportList";
 
-import reports from "../features/reports/reportData";
 
 function ReportsPage() {
+  const { reports } = useReports();
+
   const [searchTerm, setSearchTerm] = useState("");
   const [area, setArea] = useState("All");
   const [status, setStatus] = useState("All");
