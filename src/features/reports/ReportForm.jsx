@@ -7,16 +7,71 @@ function ReportForm() {
   const [severity, setSeverity] = useState("");
   const [description, setDescription] = useState("");
 
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  function validateForm() {
+    const newErrors = {};
+
+    if (!title.trim()) {
+      newErrors.title = "Please enter a problem title.";
+    }
+
+    if (!category) {
+      newErrors.category = "Please select a category.";
+    }
+
+    if (!area) {
+      newErrors.area = "Please select an area.";
+    }
+
+    if (!severity) {
+      newErrors.severity = "Please select the severity.";
+    }
+
+    if (!description.trim()) {
+      newErrors.description = "Please describe the waste problem.";
+    } else if (description.trim().length < 20) {
+      newErrors.description =
+        "Description must be at least 20 characters.";
+    }
+
+    return newErrors;
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
 
-    console.log({
-      title,
-      category,
-      area,
-      severity,
-      description,
-    });
+    const newErrors = validateForm();
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors({});
+    setIsSubmitting(true);
+
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+    }, 1000);
+  }
+
+  if (isSubmitted) {
+    return (
+      <section className="form-success">
+        <p className="eyebrow">Report submitted</p>
+
+        <h2>Thank you for reporting this problem.</h2>
+
+        <p>
+          Your report has been recorded and will be available for tracking
+          once the reporting system is connected to the backend.
+        </p>
+      </section>
+    );
   }
 
   return (
@@ -31,6 +86,10 @@ function ReportForm() {
           value={title}
           onChange={(event) => setTitle(event.target.value)}
         />
+
+        {errors.title && (
+          <p className="form-error">{errors.title}</p>
+        )}
       </div>
 
       <div className="form-field">
@@ -48,6 +107,10 @@ function ReportForm() {
           <option value="Accumulation">Accumulation</option>
           <option value="Damaged Bin">Damaged Bin</option>
         </select>
+
+        {errors.category && (
+          <p className="form-error">{errors.category}</p>
+        )}
       </div>
 
       <div className="form-field">
@@ -66,6 +129,10 @@ function ReportForm() {
           <option value="Sar Bet">Sar Bet</option>
           <option value="CMC">CMC</option>
         </select>
+
+        {errors.area && (
+          <p className="form-error">{errors.area}</p>
+        )}
       </div>
 
       <div className="form-field">
@@ -81,6 +148,10 @@ function ReportForm() {
           <option value="Medium">Medium</option>
           <option value="High">High</option>
         </select>
+
+        {errors.severity && (
+          <p className="form-error">{errors.severity}</p>
+        )}
       </div>
 
       <div className="form-field">
@@ -93,10 +164,18 @@ function ReportForm() {
           value={description}
           onChange={(event) => setDescription(event.target.value)}
         />
+
+        {errors.description && (
+          <p className="form-error">{errors.description}</p>
+        )}
       </div>
 
-      <button type="submit" className="button button-primary">
-        Submit Report
+      <button
+        type="submit"
+        className="button button-primary"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? "Submitting..." : "Submit Report"}
       </button>
     </form>
   );
