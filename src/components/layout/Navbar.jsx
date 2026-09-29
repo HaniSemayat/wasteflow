@@ -12,6 +12,7 @@ function Navbar() {
           <Link to="/">Home</Link>
           <Link to="/reports">Reports</Link>
           <Link to="/reports/new">Report a Problem</Link>
+          <Link to="/dashboard">Dashboard</Link>
         </div>
       </nav>
     </header>

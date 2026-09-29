@@ -6,6 +6,7 @@ import HomePage from "../pages/HomePage";
 import ReportsPage from "../pages/ReportsPage";
 import NewReportPage from "../pages/NewReportPage";
 import ReportDetailsPage from "../pages/ReportDetailsPage";
+import DashboardPage from "../pages/DashboardPage";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "reports/:id",
         element: <ReportDetailsPage />,
+      },
+      {
+        path: "dashboard",
+        element: <DashboardPage />,
       },
     ],
   },
