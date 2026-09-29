@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 
@@ -7,10 +10,13 @@ import currentUser from "../data/currentUser";
 function DashboardPage() {
   const { reports } = useReports();
 
-    const myReports = reports.filter(
-        (report) => report.reportedBy === currentUser.id
-    );
-  const totalReports = reports.length;
+  const [statusFilter, setStatusFilter] = useState("All");
+
+  const myReports = reports.filter(
+    (report) => report.reportedBy === currentUser.id
+  );
+
+  const totalReports = myReports.length;
 
   const openReports = myReports.filter(
     (report) => report.status === "Open"
@@ -23,6 +29,13 @@ function DashboardPage() {
   const resolvedReports = myReports.filter(
     (report) => report.status === "Resolved"
   ).length;
+
+  const visibleReports =
+    statusFilter === "All"
+      ? myReports
+      : myReports.filter(
+          (report) => report.status === statusFilter
+        );
 
   return (
     <>
@@ -70,26 +83,104 @@ function DashboardPage() {
             </div>
           </div>
 
+          <div className="dashboard-filters">
+            <button
+              type="button"
+              className={
+                statusFilter === "All"
+                  ? "dashboard-filter active"
+                  : "dashboard-filter"
+              }
+              onClick={() => setStatusFilter("All")}
+            >
+              All
+            </button>
+
+            <button
+              type="button"
+              className={
+                statusFilter === "Open"
+                  ? "dashboard-filter active"
+                  : "dashboard-filter"
+              }
+              onClick={() => setStatusFilter("Open")}
+            >
+              Open
+            </button>
+
+            <button
+              type="button"
+              className={
+                statusFilter === "In Progress"
+                  ? "dashboard-filter active"
+                  : "dashboard-filter"
+              }
+              onClick={() => setStatusFilter("In Progress")}
+            >
+              In Progress
+            </button>
+
+            <button
+              type="button"
+              className={
+                statusFilter === "Resolved"
+                  ? "dashboard-filter active"
+                  : "dashboard-filter"
+              }
+              onClick={() => setStatusFilter("Resolved")}
+            >
+              Resolved
+            </button>
+          </div>
+
+          <p className="dashboard-results">
+            Showing {visibleReports.length}{" "}
+            {visibleReports.length === 1 ? "report" : "reports"}
+          </p>
+
           <div className="dashboard-report-list">
-            {myReports.map((report) => (
-              <article className="dashboard-report-card" key={report.id}>
-                <div>
-                  <span className="status">
-                    {report.status}
-                  </span>
+            {visibleReports.length === 0 ? (
+              <div className="empty-state">
+                <h2>No reports in this status</h2>
+                <p>
+                  You don't have any reports matching the selected
+                  status.
+                </p>
+              </div>
+            ) : (
+              visibleReports.map((report) => (
+                <article
+                  className="dashboard-report-card"
+                  key={report.id}
+                >
+                  <div>
+                    <span
+                      className={`status status-${report.status
+                        .toLowerCase()
+                        .replace(" ", "-")}`}
+                    >
+                      {report.status}
+                    </span>
 
-                  <h3>{report.title}</h3>
+                    <h3>{report.title}</h3>
 
-                  <p>
-                    {report.area} · {report.reportedAt}
-                  </p>
-                </div>
+                    <p>
+                      {report.area} � {report.reportedAt}
+                    </p>
+                  </div>
 
-                <span className="severity">
-                  {report.severity} severity
-                </span>
-              </article>
-            ))}
+                  <div className="dashboard-report-actions">
+                    <span className="severity">
+                      {report.severity} severity
+                    </span>
+
+                    <Link to={`/reports/${report.id}`}>
+                      View report →
+                    </Link>
+                  </div>
+                </article>
+              ))
+            )}
           </div>
         </section>
       </main>
