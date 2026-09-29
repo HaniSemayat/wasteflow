@@ -60,8 +60,10 @@ function ReportForm() {
     setIsSubmitting(true);
 
     setTimeout(() => {
+      const newReportId = String(Date.now());
+
       const newReport = {
-        id: String(Date.now()),
+        id: newReportId,
         title: title.trim(),
         category,
         description: description.trim(),
@@ -72,6 +74,14 @@ function ReportForm() {
         reportedAt: "Just now",
         verifications: 0,
         reportedBy: currentUser.id,
+        activity: [
+          {
+            id: `${newReportId}-1`,
+            type: "reported",
+            label: "Report submitted",
+            date: "Just now",
+          },
+        ],
       };
 
       addReport(newReport);
@@ -86,7 +96,6 @@ function ReportForm() {
     <form className="report-form" onSubmit={handleSubmit}>
       <div className="form-field">
         <label htmlFor="report-title">Problem title</label>
-
         <input
           id="report-title"
           type="text"
@@ -94,7 +103,6 @@ function ReportForm() {
           value={title}
           onChange={(event) => setTitle(event.target.value)}
         />
-
         {errors.title && (
           <p className="form-error">{errors.title}</p>
         )}
@@ -102,7 +110,6 @@ function ReportForm() {
 
       <div className="form-field">
         <label htmlFor="report-category">Category</label>
-
         <select
           id="report-category"
           value={category}
@@ -115,7 +122,6 @@ function ReportForm() {
           <option value="Accumulation">Accumulation</option>
           <option value="Damaged Bin">Damaged Bin</option>
         </select>
-
         {errors.category && (
           <p className="form-error">{errors.category}</p>
         )}
@@ -123,7 +129,6 @@ function ReportForm() {
 
       <div className="form-field">
         <label htmlFor="report-area">Area</label>
-
         <select
           id="report-area"
           value={area}
@@ -137,7 +142,6 @@ function ReportForm() {
           <option value="Sar Bet">Sar Bet</option>
           <option value="CMC">CMC</option>
         </select>
-
         {errors.area && (
           <p className="form-error">{errors.area}</p>
         )}
@@ -145,7 +149,6 @@ function ReportForm() {
 
       <div className="form-field">
         <label htmlFor="report-severity">Severity</label>
-
         <select
           id="report-severity"
           value={severity}
@@ -156,7 +159,6 @@ function ReportForm() {
           <option value="Medium">Medium</option>
           <option value="High">High</option>
         </select>
-
         {errors.severity && (
           <p className="form-error">{errors.severity}</p>
         )}
@@ -164,7 +166,6 @@ function ReportForm() {
 
       <div className="form-field">
         <label htmlFor="report-description">Description</label>
-
         <textarea
           id="report-description"
           rows="6"
@@ -172,7 +173,6 @@ function ReportForm() {
           value={description}
           onChange={(event) => setDescription(event.target.value)}
         />
-
         {errors.description && (
           <p className="form-error">{errors.description}</p>
         )}

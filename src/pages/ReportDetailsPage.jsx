@@ -4,6 +4,7 @@ import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 
 import useReports from "../features/reports/useReports";
+import ReportTimeline from "../features/reports/ReportTimeline";
 
 function ReportDetailsPage() {
   const { reports } = useReports();
@@ -36,7 +37,7 @@ function ReportDetailsPage() {
 
       <main className="report-details">
         <Link to="/reports" className="back-link">
-          ← Back to reports
+          ? Back to reports
         </Link>
 
         <section className="report-detail-card">
@@ -85,6 +86,8 @@ function ReportDetailsPage() {
               <strong>{report.status}</strong>
             </div>
           </div>
+
+          <ReportTimeline activity={report.activity} />
         </section>
       </main>
 

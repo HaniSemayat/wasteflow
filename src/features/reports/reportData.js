@@ -12,7 +12,16 @@ const reports = [
     reportedAt: "2 hours ago",
     verifications: 14,
     reportedBy: "resident-1",
+    activity: [
+      {
+        id: "1-1",
+        type: "reported",
+        label: "Report submitted",
+        date: "2 hours ago",
+      },
+    ],
   },
+
   {
     id: "2",
     title: "Missed waste collection",
@@ -26,7 +35,22 @@ const reports = [
     reportedAt: "Yesterday",
     verifications: 9,
     reportedBy: "resident-1",
+    activity: [
+      {
+        id: "2-1",
+        type: "reported",
+        label: "Report submitted",
+        date: "Yesterday",
+      },
+      {
+        id: "2-2",
+        type: "in-progress",
+        label: "Collection in progress",
+        date: "Today",
+      },
+    ],
   },
+
   {
     id: "3",
     title: "Illegal dumping near road",
@@ -40,7 +64,28 @@ const reports = [
     reportedAt: "2 days ago",
     verifications: 27,
     reportedBy: "resident-1",
+    activity: [
+      {
+        id: "3-1",
+        type: "reported",
+        label: "Report submitted",
+        date: "2 days ago",
+      },
+      {
+        id: "3-2",
+        type: "in-progress",
+        label: "Collection in progress",
+        date: "Yesterday",
+      },
+      {
+        id: "3-3",
+        type: "resolved",
+        label: "Report resolved",
+        date: "Today",
+      },
+    ],
   },
+
   {
     id: "4",
     title: "Waste accumulation around collection point",
@@ -54,7 +99,16 @@ const reports = [
     reportedAt: "3 days ago",
     verifications: 6,
     reportedBy: "resident-1",
+    activity: [
+      {
+        id: "4-1",
+        type: "reported",
+        label: "Report submitted",
+        date: "3 days ago",
+      },
+    ],
   },
+
   {
     id: "5",
     title: "Damaged public waste container",
@@ -68,7 +122,22 @@ const reports = [
     reportedAt: "4 days ago",
     verifications: 4,
     reportedBy: "resident-1",
+    activity: [
+      {
+        id: "5-1",
+        type: "reported",
+        label: "Report submitted",
+        date: "4 days ago",
+      },
+      {
+        id: "5-2",
+        type: "in-progress",
+        label: "Collection in progress",
+        date: "Today",
+      },
+    ],
   },
+
   {
     id: "6",
     title: "Overflowing collection area",
@@ -82,6 +151,14 @@ const reports = [
     reportedAt: "5 days ago",
     verifications: 19,
     reportedBy: "resident-1",
+    activity: [
+      {
+        id: "6-1",
+        type: "reported",
+        label: "Report submitted",
+        date: "5 days ago",
+      },
+    ],
   },
 ];
 
