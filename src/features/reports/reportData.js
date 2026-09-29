@@ -11,6 +11,7 @@ const reports = [
     severity: "High",
     reportedAt: "2 hours ago",
     verifications: 14,
+    reportedBy: "resident-1",
   },
   {
     id: "2",
@@ -24,6 +25,7 @@ const reports = [
     severity: "Medium",
     reportedAt: "Yesterday",
     verifications: 9,
+    reportedBy: "resident-1",
   },
   {
     id: "3",
@@ -37,6 +39,7 @@ const reports = [
     severity: "High",
     reportedAt: "2 days ago",
     verifications: 27,
+    reportedBy: "resident-1",
   },
   {
     id: "4",
@@ -50,6 +53,7 @@ const reports = [
     severity: "Medium",
     reportedAt: "3 days ago",
     verifications: 6,
+    reportedBy: "resident-1",
   },
   {
     id: "5",
@@ -63,6 +67,7 @@ const reports = [
     severity: "Low",
     reportedAt: "4 days ago",
     verifications: 4,
+    reportedBy: "resident-1",
   },
   {
     id: "6",
@@ -76,6 +81,7 @@ const reports = [
     severity: "High",
     reportedAt: "5 days ago",
     verifications: 19,
+    reportedBy: "resident-1",
   },
 ];
 

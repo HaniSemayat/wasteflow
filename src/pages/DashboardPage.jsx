@@ -2,21 +2,25 @@ import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 
 import useReports from "../features/reports/useReports";
+import currentUser from "../data/currentUser";
 
 function DashboardPage() {
   const { reports } = useReports();
 
+    const myReports = reports.filter(
+        (report) => report.reportedBy === currentUser.id
+    );
   const totalReports = reports.length;
 
-  const openReports = reports.filter(
+  const openReports = myReports.filter(
     (report) => report.status === "Open"
   ).length;
 
-  const inProgressReports = reports.filter(
+  const inProgressReports = myReports.filter(
     (report) => report.status === "In Progress"
   ).length;
 
-  const resolvedReports = reports.filter(
+  const resolvedReports = myReports.filter(
     (report) => report.status === "Resolved"
   ).length;
 
@@ -67,7 +71,7 @@ function DashboardPage() {
           </div>
 
           <div className="dashboard-report-list">
-            {reports.map((report) => (
+            {myReports.map((report) => (
               <article className="dashboard-report-card" key={report.id}>
                 <div>
                   <span className="status">

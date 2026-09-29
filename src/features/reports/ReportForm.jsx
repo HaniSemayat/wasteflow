@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import useReports from "./useReports";
+import currentUser from "../../data/currentUser";
 
 function ReportForm() {
   const navigate = useNavigate();
@@ -70,6 +71,7 @@ function ReportForm() {
         severity,
         reportedAt: "Just now",
         verifications: 0,
+        reportedBy: currentUser.id,
       };
 
       addReport(newReport);
