@@ -10,8 +10,39 @@ function ReportsProvider({ children }) {
     setReports((currentReports) => [report, ...currentReports]);
   }
 
+  function cancelReport(reportId) {
+    setReports((currentReports) =>
+      currentReports.map((report) => {
+        if (
+          report.id !== reportId ||
+          report.status !== "Open"
+        ) {
+          return report;
+        }
+
+        const cancelledAt = "Just now";
+
+        return {
+          ...report,
+          status: "Cancelled",
+          activity: [
+            ...(report.activity ?? []),
+            {
+              id: `${report.id}-cancelled-${Date.now()}`,
+              type: "cancelled",
+              label: "Report cancelled",
+              date: cancelledAt,
+            },
+          ],
+        };
+      })
+    );
+  }
+
   return (
-    <ReportsContext.Provider value={{ reports, addReport }}>
+    <ReportsContext.Provider
+      value={{ reports, addReport, cancelReport }}
+    >
       {children}
     </ReportsContext.Provider>
   );

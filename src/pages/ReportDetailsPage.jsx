@@ -5,9 +5,10 @@ import Footer from "../components/layout/Footer";
 
 import useReports from "../features/reports/useReports";
 import ReportTimeline from "../features/reports/ReportTimeline";
+import currentUser from "../data/currentUser";
 
 function ReportDetailsPage() {
-  const { reports } = useReports();
+  const { reports, cancelReport } = useReports();
   const { id } = useParams();
 
   const report = reports.find((item) => item.id === id);
@@ -22,13 +23,25 @@ function ReportDetailsPage() {
           <p>
             The waste report you're looking for doesn't exist.
           </p>
-
           <Link to="/reports">Back to reports</Link>
         </main>
 
         <Footer />
       </>
     );
+  }
+
+  const isOwner = report.reportedBy === currentUser.id;
+  const canCancel = isOwner && report.status === "Open";
+
+  function handleCancel() {
+    const confirmed = window.confirm(
+      "Are you sure you want to cancel this report? This action cannot be undone."
+    );
+
+    if (confirmed) {
+      cancelReport(report.id);
+    }
   }
 
   return (
@@ -87,7 +100,25 @@ function ReportDetailsPage() {
             </div>
           </div>
 
-          <ReportTimeline activity={report.activity} />
+          {canCancel && (
+            <div className="report-actions">
+              <button
+                type="button"
+                className="button button-danger"
+                onClick={handleCancel}
+              >
+                Cancel report
+              </button>
+            </div>
+          )}
+
+          {report.status === "Cancelled" && (
+            <p className="cancelled-notice">
+              This report has been cancelled.
+            </p>
+          )}
+
+          <ReportTimeline activity={report.activity ?? []} />
         </section>
       </main>
 

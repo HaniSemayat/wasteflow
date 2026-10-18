@@ -9,7 +9,6 @@ import currentUser from "../data/currentUser";
 
 function DashboardPage() {
   const { reports } = useReports();
-
   const [statusFilter, setStatusFilter] = useState("All");
 
   const myReports = reports.filter(
@@ -37,6 +36,14 @@ function DashboardPage() {
           (report) => report.status === statusFilter
         );
 
+  const filters = [
+    "All",
+    "Open",
+    "In Progress",
+    "Resolved",
+    "Cancelled",
+  ];
+
   return (
     <>
       <Navbar />
@@ -44,9 +51,7 @@ function DashboardPage() {
       <main className="dashboard-page">
         <section className="dashboard-header">
           <p className="eyebrow">Resident dashboard</p>
-
           <h1>Keep track of your reports.</h1>
-
           <p>
             See the waste problems you have reported and follow their
             progress from one place.
@@ -84,53 +89,20 @@ function DashboardPage() {
           </div>
 
           <div className="dashboard-filters">
-            <button
-              type="button"
-              className={
-                statusFilter === "All"
-                  ? "dashboard-filter active"
-                  : "dashboard-filter"
-              }
-              onClick={() => setStatusFilter("All")}
-            >
-              All
-            </button>
-
-            <button
-              type="button"
-              className={
-                statusFilter === "Open"
-                  ? "dashboard-filter active"
-                  : "dashboard-filter"
-              }
-              onClick={() => setStatusFilter("Open")}
-            >
-              Open
-            </button>
-
-            <button
-              type="button"
-              className={
-                statusFilter === "In Progress"
-                  ? "dashboard-filter active"
-                  : "dashboard-filter"
-              }
-              onClick={() => setStatusFilter("In Progress")}
-            >
-              In Progress
-            </button>
-
-            <button
-              type="button"
-              className={
-                statusFilter === "Resolved"
-                  ? "dashboard-filter active"
-                  : "dashboard-filter"
-              }
-              onClick={() => setStatusFilter("Resolved")}
-            >
-              Resolved
-            </button>
+            {filters.map((filter) => (
+              <button
+                key={filter}
+                type="button"
+                className={
+                  statusFilter === filter
+                    ? "dashboard-filter active"
+                    : "dashboard-filter"
+                }
+                onClick={() => setStatusFilter(filter)}
+              >
+                {filter}
+              </button>
+            ))}
           </div>
 
           <p className="dashboard-results">
@@ -165,7 +137,7 @@ function DashboardPage() {
                     <h3>{report.title}</h3>
 
                     <p>
-                      {report.area} ï¿½ {report.reportedAt}
+                      {report.area} · {report.reportedAt}
                     </p>
                   </div>
 
@@ -175,7 +147,7 @@ function DashboardPage() {
                     </span>
 
                     <Link to={`/reports/${report.id}`}>
-                      View report â†’
+                      View report ?
                     </Link>
                   </div>
                 </article>
