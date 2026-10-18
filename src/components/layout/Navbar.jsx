@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -13,6 +13,7 @@ function Navbar() {
           <Link to="/reports">Reports</Link>
           <Link to="/reports/new">Report a Problem</Link>
           <Link to="/dashboard">Dashboard</Link>
+          <Link to="/collector">Collector</Link>
         </div>
       </nav>
     </header>

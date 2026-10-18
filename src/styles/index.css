@@ -1008,3 +1008,129 @@ select {
     gap: 10px;
   }
 }
+
+/* Collector dashboard */
+
+.collector-page {
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 90px 0 110px;
+}
+
+.collector-header {
+  margin-bottom: 52px;
+}
+
+.collector-header h1 {
+  max-width: 700px;
+  margin: 12px 0;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  line-height: 1.1;
+}
+
+.collector-header > p:not(.eyebrow) {
+  max-width: 680px;
+  color: #667067;
+  line-height: 1.7;
+}
+
+.collector-identity {
+  margin-top: 20px;
+}
+
+.collector-section {
+  margin-top: 44px;
+}
+
+.collector-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.collector-section-header h2 {
+  margin: 6px 0 0;
+}
+
+.collector-count {
+  padding: 8px 12px;
+  border: 1px solid #cfd7cc;
+  border-radius: 999px;
+  color: #354438;
+  font-size: 0.875rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.collector-report-list {
+  display: grid;
+  gap: 18px;
+}
+
+.collector-report-card {
+  padding: 24px;
+  border: 1px solid #dfe5dc;
+  border-radius: 18px;
+  background: #fff;
+}
+
+.collector-report-content h3 {
+  margin: 12px 0 8px;
+  font-size: 1.2rem;
+}
+
+.collector-report-content > p:not(.eyebrow) {
+  color: #667067;
+  line-height: 1.65;
+}
+
+.collector-report-location {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-top: 18px;
+  color: #667067;
+  font-size: 0.875rem;
+}
+
+.collector-report-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.collector-report-actions a {
+  font-weight: 800;
+}
+
+.collector-report-actions button {
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .collector-page {
+    padding-top: 54px;
+  }
+
+  .collector-section-header {
+    align-items: flex-start;
+  }
+
+  .collector-report-card {
+    padding: 18px;
+  }
+
+  .collector-report-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .collector-report-actions button {
+    width: 100%;
+  }
+}
