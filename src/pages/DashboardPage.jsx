@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import Navbar from "../components/layout/Navbar";
@@ -29,13 +29,6 @@ function DashboardPage() {
     (report) => report.status === "Resolved"
   ).length;
 
-  const visibleReports =
-    statusFilter === "All"
-      ? myReports
-      : myReports.filter(
-          (report) => report.status === statusFilter
-        );
-
   const filters = [
     "All",
     "Open",
@@ -43,6 +36,13 @@ function DashboardPage() {
     "Resolved",
     "Cancelled",
   ];
+
+  const visibleReports =
+    statusFilter === "All"
+      ? myReports
+      : myReports.filter(
+          (report) => report.status === statusFilter
+        );
 
   return (
     <>
@@ -115,8 +115,7 @@ function DashboardPage() {
               <div className="empty-state">
                 <h2>No reports in this status</h2>
                 <p>
-                  You don't have any reports matching the selected
-                  status.
+                  You don't have any reports matching the selected status.
                 </p>
               </div>
             ) : (
@@ -137,7 +136,7 @@ function DashboardPage() {
                     <h3>{report.title}</h3>
 
                     <p>
-                      {report.area} � {report.reportedAt}
+                      {report.area} · {report.reportedAt}
                     </p>
                   </div>
 
@@ -147,7 +146,7 @@ function DashboardPage() {
                     </span>
 
                     <Link to={`/reports/${report.id}`}>
-                      View report ?
+                      View report →
                     </Link>
                   </div>
                 </article>

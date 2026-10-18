@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 
 import ReportsContext from "./ReportsContext";
 import initialReports from "./reportData";
@@ -15,12 +15,11 @@ function ReportsProvider({ children }) {
       currentReports.map((report) => {
         if (
           report.id !== reportId ||
-          report.status !== "Open"
+          report.status !== "Open" ||
+          report.reportedBy !== "resident-1"
         ) {
           return report;
         }
-
-        const cancelledAt = "Just now";
 
         return {
           ...report,
@@ -31,7 +30,7 @@ function ReportsProvider({ children }) {
               id: `${report.id}-cancelled-${Date.now()}`,
               type: "cancelled",
               label: "Report cancelled",
-              date: cancelledAt,
+              date: "Just now",
             },
           ],
         };
